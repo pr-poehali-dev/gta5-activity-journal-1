@@ -1,0 +1,50 @@
+{
+  "tests": [
+    {
+      "name": "Auth endpoint - successful login",
+      "method": "POST",
+      "path": "/auth",
+      "body": {
+        "username": "superadmin",
+        "password": "admin123"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "user": {
+          "id": "number",
+          "username": "string",
+          "display_name": "string",
+          "role": "string"
+        }
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Stats endpoint - get player stats",
+      "method": "GET",
+      "path": "/stats",
+      "queryParams": {
+        "user_id": "2"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "stats": {
+          "total_online": "number",
+          "total_time": "number"
+        },
+        "history": "array"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Players endpoint - get all players",
+      "method": "GET",
+      "path": "/players",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "players": "array"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
